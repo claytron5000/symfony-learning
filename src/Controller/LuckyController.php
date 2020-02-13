@@ -5,11 +5,13 @@ namespace App\Controller;
 
 
 use Psr\Log\LoggerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Stopwatch\Stopwatch;
 
-class LuckyController {
+class LuckyController extends AbstractController
+{
   /**
    * @Route("/lucky/number/{max}")
    *
@@ -31,8 +33,6 @@ class LuckyController {
     $stopwatch->stop('lucky_number');
     $message = $stopwatch->getEvent('lucky_number');
     $logger->info($message);
-    return new Response(
-      '<html><body>Lucky number: '.$number.'</body></html>'
-    );
+    return $this->render('neato/index.html.twig', ['lucky_number' => $number, 'controller_name' => 'Lucky']);
   }
 }

@@ -12,6 +12,7 @@ class SomethingController extends AbstractController
      */
     public function index()
     {
+//        var_dump($this->getSubscribedServices());
         return $this->render('something/index.html.twig', [
             'controller_name' => 'SomethingController',
             'cool_url' => $this->generateUrl('app_lucky_number')
